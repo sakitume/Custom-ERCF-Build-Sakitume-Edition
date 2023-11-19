@@ -475,7 +475,6 @@
 <h2 id="sturdy-bunny-parts">Sturdy Bunny parts</h2>
 <p>Because SturdyBunny is a fork, it also has the original parts in the repo. <strong>You want to ignore those.</strong> Intead you want to look at the <a href="https://github.com/sneakytreesnake/SturdyBunnyProject/tree/main/Study_FeederV2%20(development%20parts)">"Study_FeederV2 (development parts)"</a> folder that has subfolders for the STL files you will print as well as CAD (step) file that you can view to see how the assembly goes together.</p>
 <p><img alt="image" src="https://user-images.githubusercontent.com/875866/280436351-cb3bfc8b-42a0-42dc-a1e3-e03fcaa8a6d6.png" /></p>
-<p>The recipe (as described by Tea on Voron discord) said something along the lines of the following for the SturdyBunny files:</p>
 <p>In the following sections I will list the name of a folder in SturdyBunny and the STL files within that foler that you should print</p>
 <h3 id="linear-axis">Linear Axis</h3>
 <p>Print all of the files in the <code>Linear axis</code> folder <strong>except</strong> the <code>Idler_Block_V1A.stl</code> file as the Spring mod has a replacement for that part</p>
@@ -540,11 +539,8 @@
 <pre><code>/SturdyBunnyProject/Study_FeederV2 (development parts)/Stls/EASY_BRD
   [a]ERCF_EASY_BRD_BRACKET_V1A.stl
 </code></pre>
-<blockquote>
-<p>Note: The above has two "accent" parts. You could do all of the above using two different plates</p>
-</blockquote>
 <h2 id="triple-decky-parts-skip-this-if-using-thumper-blocks">Triple-Decky parts (skip this if using Thumper Blocks)</h2>
-<p>For each of the following parts print out one for each port. In my case my ERCF will have 6 ports</p>
+<p>For each of the following parts print out one for each gate. In my case my ERCF will have 6 gates (ports)</p>
 <pre><code>Triple-Decky/STL/Sturdy Bunny/Rev_C
   [a]Triple_Decky_Latch_RevC6_0.stl
 
@@ -561,11 +557,13 @@ Triple-Decky/STL/Sturdy Bunny/Rev_C/Rev_C7.0_3PS_only
   Triple_Decky_Filament_path_3PS_C70_clearance2.stl
 </code></pre>
 <p>Be sure to check out the <a href="https://www.youtube.com/watch?v=SpWfUNTKa9g">video</a> at the bottom of the Triple-Decky <a href="https://github.com/gneu42/Triple-Decky/blob/main/README.md">README.md</a></p>
+<p>I've also put together a video that describes how I clean up these Triple-Decky parts and assemble them. This will also show you the type of smooth and feely pivoting action you should be going for</p>
+<p><a href="https://www.youtube.com/watch?v=eno0Ubs8Q_8"><img alt="Video" src="https://img.youtube.com/vi/eno0Ubs8Q_8/maxresdefault.jpg" /></a></p>
 <p>Next you need to print out one trap for each port (filament block). They are found in the <code>Traps</code> folder. I chose to use the "V Shape" variant:</p>
 <pre><code>Triple-Decky/STL/Sturdy Bunny/Rev_C/Traps
   TD_Base_Trap_V-Shape_C56.stl
 </code></pre>
-<p>There is a setscrew variant. I think the difference is that the setscrew metallic threads impart greater friction against the filament when it is activated as brake.</p>
+<p>There is a setscrew variant. I think the difference is that the setscrew metallic threads impart greater friction against the filament when it is activated as brake. These reportedly work better for some folks compared to the "v" shape traps.</p>
 <p>My understanding is that these traps are simply holes that the filament will pass through. When a filament block is active (enaged by the <em>selector</em>) the path of the filament as it passes through a trap is straight and clear with minimal resistance. If a block is not active then the trap is lifted slightly and the filament is no longer straight through the trap hole and experiences resistance; this helps keep the filament from moving in/out of the block while the block is not active.</p>
 <p>If you have m3x2 or m3x3 setscrews then you might want to try that set screw variant instead:</p>
 <pre><code>Triple-Decky/STL/Sturdy Bunny/Rev_C/Traps
@@ -577,7 +575,19 @@ My FYSETC uses an MG90S servo, so I printed out this part</p>
   Servo_Arm_MG90S_for_3PS.stl
 </code></pre>
 <h2 id="thumper-blocks-skip-this-if-using-triple-decky">Thumper Blocks (skip this if using Triple-Decky)</h2>
-<p>TODO</p>
+<p>I'm using the latest parts (<code>Rev_2</code>) that were released on 11/10/2023.
+For each of the following parts print out one for each gate. In my case my ERCF will have 6 gates (ports)</p>
+<pre><code>/Thumper-Blocks/STL/Rev_2
+  [a]_latch.stl
+  [a]_tophat_with_supports.stl
+  base.stl
+  filament_path.stl
+</code></pre>
+<blockquote>
+<p>Note: Thumper Blocks provides a <strong><em>copy</em></strong> of the Springy servo arm you will use, but I opted to use the servo arm file direct from the Springy project just in case it was updated. I describe the Springy parts in the next section</p>
+</blockquote>
+<p>I've also made a video about these filament blocks
+<a href="https://www.youtube.com/watch?v=MmB212pJrAc"><img alt="Video" src="https://img.youtube.com/vi/MmB212pJrAc/maxresdefault.jpg" /></a></p>
 <h2 id="springy-parts">Springy Parts</h2>
 <pre><code>ERCF-Springy
   [a]_Springy_Selector_Cart.stl
