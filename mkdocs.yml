@@ -1,0 +1,30 @@
+site_name: Sakitume's Custom ERCF Build
+
+nav:
+    - Home: index.md
+    - Custom Build: sidebar/custom-build-description.md
+    - The various mods: sidebar/the-mods.md
+
+# We need the 'material' theme for the 'offline' plugin to work
+theme:
+  name: material
+
+plugins:
+  - search
+  - offline  
+
+# See: https://squidfunk.github.io/mkdocs-material/reference/code-blocks/#highlight
+#markdown_extensions:
+#  - pymdownx.highlight
+#  - pymdownx.superfences
+
+
+markdown_extensions:
+  - pymdownx.highlight:
+      use_pygments: false
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js
+  - javascripts/config.js
+extra_css:
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css
+
