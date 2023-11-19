@@ -37,8 +37,6 @@ Because SturdyBunny is a fork, it also has the original parts in the repo. **You
 
 ![image](https://user-images.githubusercontent.com/875866/280436351-cb3bfc8b-42a0-42dc-a1e3-e03fcaa8a6d6.png)
 
-The recipe (as described by Tea on Voron discord) said something along the lines of the following for the SturdyBunny files:
-
 
 In the following sections I will list the name of a folder in SturdyBunny and the STL files within that foler that you should print
 
@@ -131,12 +129,9 @@ My kit provided a FYSETC ERB controller board, the following part will let you m
   [a]ERCF_EASY_BRD_BRACKET_V1A.stl
 ```
 
-
-> Note: The above has two "accent" parts. You could do all of the above using two different plates
-
 ## Triple-Decky parts (skip this if using Thumper Blocks)
 
-For each of the following parts print out one for each port. In my case my ERCF will have 6 ports
+For each of the following parts print out one for each gate. In my case my ERCF will have 6 gates (ports)
 ```
 Triple-Decky/STL/Sturdy Bunny/Rev_C
   [a]Triple_Decky_Latch_RevC6_0.stl
@@ -159,13 +154,18 @@ Triple-Decky/STL/Sturdy Bunny/Rev_C/Rev_C7.0_3PS_only/Clearance_options
 
 Be sure to check out the [video](https://www.youtube.com/watch?v=SpWfUNTKa9g) at the bottom of the Triple-Decky [README.md](https://github.com/gneu42/Triple-Decky/blob/main/README.md)
 
+I've also put together a video that describes how I clean up these Triple-Decky parts and assemble them. This will also show you the type of smooth and feely pivoting action you should be going for
+
+[![Video](https://img.youtube.com/vi/eno0Ubs8Q_8/maxresdefault.jpg)](https://www.youtube.com/watch?v=eno0Ubs8Q_8)
+
+
 Next you need to print out one trap for each port (filament block). They are found in the `Traps` folder. I chose to use the "V Shape" variant:
 ```
 Triple-Decky/STL/Sturdy Bunny/Rev_C/Traps
   TD_Base_Trap_V-Shape_C56.stl
 ```
 
-There is a setscrew variant. I think the difference is that the setscrew metallic threads impart greater friction against the filament when it is activated as brake.
+There is a setscrew variant. I think the difference is that the setscrew metallic threads impart greater friction against the filament when it is activated as brake. These reportedly work better for some folks compared to the "v" shape traps.
 
 My understanding is that these traps are simply holes that the filament will pass through. When a filament block is active (enaged by the *selector*) the path of the filament as it passes through a trap is straight and clear with minimal resistance. If a block is not active then the trap is lifted slightly and the filament is no longer straight through the trap hole and experiences resistance; this helps keep the filament from moving in/out of the block while the block is not active.
 
@@ -183,7 +183,22 @@ Triple-Decky/STL/Sturdy Bunny/Rev_C/ Servo_arms_for_3PS
 ```
 
 ## Thumper Blocks (skip this if using Triple-Decky)
-TODO
+I'm using the latest parts (`Rev_2`) that were released on 11/10/2023.
+For each of the following parts print out one for each gate. In my case my ERCF will have 6 gates (ports)
+
+```
+/Thumper-Blocks/STL/Rev_2
+  [a]_latch.stl
+  [a]_tophat_with_supports.stl
+  base.stl
+  filament_path.stl
+```
+
+> Note: Thumper Blocks provides a ***copy*** of the Springy servo arm you will use, but I opted to use the servo arm file direct from the Springy project just in case it was updated. I describe the Springy parts in the next section
+
+I've also made a video about these filament blocks
+[![Video](https://img.youtube.com/vi/MmB212pJrAc/maxresdefault.jpg)](https://www.youtube.com/watch?v=MmB212pJrAc)
+
 
 ## Springy Parts
 ```
