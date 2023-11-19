@@ -5,7 +5,11 @@ nav:
     - The custom build: sidebar/custom-build-description.md
     - The various mods: sidebar/the-mods.md
     - Printing the parts: sidebar/printing.md
-    - Assembling the parts: sidebar/assembly.md
+    - Assembling the parts:
+      - Prep: assembly/prep.md
+      - Gearbox: assembly/gearbox.md
+      - Filament blocks: assembly/filament-blocks.md
+      - Selector: assembly/selector.md
     - FYSETC ERB board: sidebar/fysetc-erb.md
     - Happy Hare v2.2: sidebar/happy-hare.md
     - Filament Cutters: sidebar/filament-cutters.md
