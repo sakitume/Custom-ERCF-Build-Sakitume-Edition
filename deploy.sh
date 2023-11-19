@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python3 -m mkdocs gh-deploy --force
+python -m mkdocs gh-deploy --force

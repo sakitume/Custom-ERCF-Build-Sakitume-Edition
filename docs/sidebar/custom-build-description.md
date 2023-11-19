@@ -1,6 +1,6 @@
 # What is this custom build?
 
-I based this build on (what I call) a "recipe" provided by Tea (a member of the Voron discord server) who made a post in the `#ercf-questions` channel around May 2023 on what she would use if she were to [make an ERCF in May 2023](https://discord.com/channels/460117602945990666/909743915475816458/1112241338554011759)
+I based this build on (what I call) a "recipe" provided by Tea (a member of the Voron discord server) who made a post in the `#ercf_questions` channel around May 2023 on what she would use if she were to [make an ERCF in May 2023](https://discord.com/channels/460117602945990666/909743915475816458/1112241338554011759)
 
 > Note: If you need an invite to reach that Voron discord server post you can try [this](https://discord.gg/voron)
 
@@ -25,9 +25,9 @@ Yeah...to build this custom beast you are going to have to jump around a bunch o
 
 But don't worry, while it may seem daunting there are others who have traveled this path (or one similar to it) and that makes it easier. There are several resources available that you can turn to:
 
-* The [`#ercf_questions` channel](https://discord.com/channels/460117602945990666/909743915475816458) on the Voron Discord Server has a lot of activity with people posting questions (and often answers) regarding ERCF. To be honest, because it can be a bit busy at times, and due to how Discord works, some posts can get lost (scroll away) due to the activity.
+* The [`#ercf_questions`](https://discord.com/channels/460117602945990666/909743915475816458) channel on the Voron Discord Server has a lot of activity with people posting questions (and often answers) regarding ERCF. To be honest, because it can be a bit busy at times, and due to how Discord works, some posts can get lost (scroll away) due to the activity.
 * [Matt's Unofficial ERCF v2 Printed Parts Tracker spreadsheet](https://docs.google.com/spreadsheets/d/1K2i_MtVuokYDMmjRRw3gyZF1DaFUahJZ2FlhEajCJtM/edit)
-* The [`#ercf_mmu` channel](https://discord.com/channels/1102420774993793107/1165500835355176992) on fizzy's 3DPrinting Discord server has some helpful folks. Not as busy as the Voron Discord server, but maybe that's a good thing.
-* My [ERCF Build Log](https://discord.com/channels/1085579502735872044/1170211560531177544/1170211560531177544) on the Delayed Development discord server (invite for this server is [here[](https://discord.gg/upRPU4vNSZ))
+* The [`#ercf_mmu`](https://discord.com/channels/1102420774993793107/1165500835355176992) channel on fizzy's 3DPrinting Discord server has some helpful folks. Not as busy as the Voron Discord server, but maybe that's a good thing.
+* My [ERCF Build Log](https://discord.com/channels/1085579502735872044/1170211560531177544/1170211560531177544) on the Delayed Development discord server (invite for this server is [here](https://discord.gg/upRPU4vNSZ))
 
-And well....of course there are these notes you're reading now, as well as a few videos on [my YouTube channel](https://www.youtube.com/channel/UC6pX9Il67lsxVa1CSkXlb0g).
+And well....of course there are [these notes](https://sakitume.github.io/Custom-ERCF-Build-Sakitume-Edition/) you're reading now, as well as a few videos on [my YouTube channel](https://www.youtube.com/channel/UC6pX9Il67lsxVa1CSkXlb0g).
