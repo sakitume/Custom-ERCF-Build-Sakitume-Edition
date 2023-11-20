@@ -12,7 +12,7 @@ as well as the type of filament blocks you'll be using (Triple-Decky or Thumper 
 
 ### If using Thumper Blocks
 I have a 6 gate ERCF kit. I cut my extrusion to 175mm. This allows me to fully swing open the upper part of the assembly to about 105 degrees.
-So....a forumula could be derived like this:
+So....a formula could be derived like this:
 
 ```
 (NumberOfGates * 21) + 49
