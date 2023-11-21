@@ -1,13 +1,16 @@
 
-## The gearbox assembly
-Reference the original [ERCF Build Manual](https://github.com/EtteGit/EnragedRabbitProject/blob/main/Documentation/ERCF_Manual.pdf) to figure out what heat set inserts you'll install. There are only a few differences between SturdyBunny and original ERCF v1.1
+## Important
 
-**VERY IMPORTANT**: Be sure to route the endstop switch wires and your gear motor wires into the correct area during this part of the assembly or you will not be able to install the bottom plate later on. I didn't realize this the first time I assembled the gearbox so I want you to avoid the headache of having to disassemble and fix later on. I need to put some pictures up about this here!!!
+### Wires for the gearbox
+During assembly of the gearbox there will be a point where you must be mindful about the endstop wires and gear motor wires. You want to make sure they are routed between the "Gear Box Front" and "Gear Box Back" parts when those parts are being mounted onto the 2020 extrusion. If you don't do this correctly you will likely find that you cannot install the bottom plate and will have to disaasemble and redo this area. I learned the hard way, hopefully you can avoid this.
 
-If you're reading this and you're building it *right now* and this isn't clear then feel free to message me on the Delayed Discord server (use search box of this site for a link in case you're not already a member of that server).
+I need to put some pictures up about this here!!! In the meantime you can refer to my gearbox assembly video at at time [22:50](https://youtu.be/fbsh2KR2J1U?t=1352).
+
+### Extra heatset inserts
+I made a mistake when I assembled my gearbox because I didn't install two additional heatset inserts. Those inserts retain two screws that act as pins for a "Latch" part. I describe this in more detail below.
 
 ## Heatset Inserts
-You should consult the original ERCF v1.1. build manual. It helps you figure out where heatset inserts should be used. Even though we are using SturdyBunny the
+You should consult the original [ERCF Build Manual](https://github.com/EtteGit/EnragedRabbitProject/blob/main/Documentation/ERCF_Manual.pdf). It helps you figure out where heatset inserts should be used. Even though we are using SturdyBunny the
 ERCF manual is still pretty close.
 
 One **big** difference that I came across (or got bitten by) is that the gear box parts use inserts differently between SturdyBunny versus ERCF. With ERCF the "Gear Box Back" part uses 4 inserts. With SturdyBunny the "Gear Box Back" part requires 6, or so I now believe. I missed this because I reviewed the SturdyBunny CAD file to check for inserts and only counted 4, but after assembling the gearbox I believe it should be using two additional inserts to prevent the two screws that act as pins for a latch from backing out.
