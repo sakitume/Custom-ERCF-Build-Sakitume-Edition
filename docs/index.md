@@ -6,6 +6,8 @@ I was able to search the internet and come across various resources and posts fr
 
 Please check out the sidebar on the left (pull it down if you have to in case it is collapsed) and browse the various sections I've compiled thus far.
 
+> Note: This isn't meant to be a build guide, although it should contain enough information to help with most builds. Instead it is a collection of notes and information that I collected while building *my* ERCF, using a FYSETC kit and a selection of mods that I thought made sense. So please be mindful that there can be some mistakes or inefficiencies in how I built mine. Also some of what I've done might not apply to your own build especially when different parts or mods are used.
+
 Oh...and thanks for visiting.
 
 --Sakitume (Sock it to me)

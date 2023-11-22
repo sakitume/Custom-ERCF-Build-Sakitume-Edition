@@ -31,3 +31,8 @@ But don't worry, while it may seem daunting there are others who have traveled t
 * My [ERCF Build Log](https://discord.com/channels/1085579502735872044/1170211560531177544/1170211560531177544) on the Delayed Development discord server (invite for this server is [here](https://discord.gg/upRPU4vNSZ))
 
 And well....of course there are [these notes](https://sakitume.github.io/Custom-ERCF-Build-Sakitume-Edition/) you're reading now, as well as a few videos on [my YouTube channel](https://www.youtube.com/channel/UC6pX9Il67lsxVa1CSkXlb0g).
+
+## Using a kit
+An important thing to note is that I used the FYSETC ERCF kit (6 gate version). So almost all of the hardware needed came from that kit (save for some M3 T-Nuts and some M3 screws, a length of 2020 extrusion for SturdyBunny and a spring for the Springy mod). So far this kit seems to be pretty nice.
+
+There are other kits available and of course you can self-source all of the pieces. Given all the little bits and pieces needed, I'd recommend a kit for most builders.

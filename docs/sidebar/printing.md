@@ -17,7 +17,7 @@ The filename of an STL will have an `[a]` prefix to indicate if you should use t
 
 The STL files for the printed parts will come from the projects/mods I mentioned earlier. You won't be using any STL files from the original ECRF project.
 
-1. Start by downloading the [original ERCF v1.1 manual](). You will use this even though a lot of the parts are different; the new parts are still close enough to their original counterparts that you will find this manual to be helpful. 
+1. Start by downloading the [original ERCF v1.1 manual](https://github.com/EtteGit/EnragedRabbitProject/blob/main/Documentation/ERCF_Manual.pdf). You will use this even though a lot of the parts are different; the new parts are still close enough to their original counterparts that you will find this manual to be helpful. 
 
 2. Then you should clone the [SturdyBunny project](https://github.com/sneakytreesnake/SturdyBunnyProject). Or download the [zip](https://github.com/sneakytreesnake/SturdyBunnyProject/archive/refs/heads/main.zip) and unzipping it somewhere to work with.
 
@@ -42,7 +42,7 @@ In the following sections I will list the name of a folder in SturdyBunny and th
 
 
 ### Linear Axis
-Print all of the files in the `Linear axis` folder **except** the `Idler_Block_V1A.stl` file as the Spring mod has a replacement for that part
+Print all of the files in the `Linear axis` folder **except** the `Idler_Block_V1A.stl` file as the Springy mod has a replacement for that part
 
 ```
 /SturdyBunnyProject/Study_FeederV2 (development parts)/Stls/Linear axis
