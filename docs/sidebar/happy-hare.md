@@ -163,6 +163,133 @@ Done.  Enjoy ERCF (and thank you Ette for a wonderful design)...
 donovan@kp:~/Happy-Hare$
 ```
 
+This should complete the basic install. You will want to restart the Klipper firmware (using Mainsail interface) before continuing on with calibration.
 After this install I restarted the Klipper firmware (using Mainsail) and then i performed the basic hardware config/tests found in the [hardware configuration doc](https://github.com/moggieuk/Happy-Hare/blob/main/doc/hardware_config.md). 
 
-Then I started to perform the calibration steps described in the [MMU Calibration Doc](https://github.com/moggieuk/Happy-Hare/blob/main/doc/calibration.md)
+## Hardware configuration/testing of our ERCF for use with Happy Hare
+The basic hardware configuration steps are found in the [hardware configuration doc](https://github.com/moggieuk/Happy-Hare/blob/main/doc/hardware_config.md). 
+I will summarize the steps that I followed with some clarification and/or pointers.
+
+TODO elaborate on this section.
+
+* I checked that the endstop was working (use MainSail query endstops, manually trigger the switch, view that it is triggered with Mainsail, etc)
+* Use `MMU_MOTORS_OFF` to ensure all motors off, move selector manually to middle, use `MMU_HOME` to test selector moves in the proper direction. Adjust config if needed.
+* Check encoder via `MMU_ENCODER`, insert filament and push/pull so it moves the encoder wheel, re-issue `MMU_ENCODER` and value should always increase
+
+
+## Basic calibration/testing of your ERCF for use with Happy Hare
+
+The calibration steps are described in the [MMU Calibration Doc](https://github.com/moggieuk/Happy-Hare/blob/main/doc/calibration.md).
+I will summarize the steps that I followed with some clarification and/or pointers.
+
+### Step 1. Calibrate selector offsets
+
+Line up the selector against the first gate (Gate 0) so that you can pass filament from inlet side to outlet side. Using your fingers, rotate the selector pulley clockwise/counter-clockwise back and forth slightly, you'll see that there is a small range that you can move the selector as the filament is keeping it in place. Use the pulley
+to center the selector in the middle of this range. 
+
+> Pro Tip: Look at the belt teeth by the selector edge, using the selector edge as visual marker. This will tell you how much range is available, usually around one tooth. Halve this number of teeth to find the center.
+
+```
+MMU_CALIBRATE_SELECTOR GATE=0
+```
+
+Repeat this process for gate 1 and changing the macro `GATE` parameter to `1`
+```
+MMU_CALIBRATE_SELECTOR GATE=1
+```
+
+Repeat this for the rest of the gates remembering to change the `GATE` parameter each time.
+
+After you've done this for all of the gates you should now be able to select any gate using the `MMU_SELECT TOOL=XXX` command where `XXX` is replaced with the gate/tool number. For example the following will move the selector to gate 4.
+
+```
+MMU_SELECT TOOL=4
+```
+
+You can also use `MMU_HOME` command to select a gate/tool but this command will first home the selector before selecting the gate/tool.
+
+
+> Note: If you execute the either `MMU_HOME` or `MMU_SELECT` command, the selector motor will remain engaged. Do not try to manually move the selector unless you turn off the motor via `MMU_MOTORS_OFF`.
+
+### Step 2. Calibrate your gear stepper
+Issue the following in the console to home the selector and the move the selector to a convenient gate (gate 2 in this case)
+```
+MMU_HOME TOOL=2
+```
+Have at least 400mm of filament handy. Either a length you've cut to size or on a spool holder that can freely feed this amount to the ERCF.
+
+```
+MMU_SERVO POS=down
+```
+
+```
+MMU_CALIBRATE_ENCODER
+```
+
+### Step 3. Calibrate bowden length
+
+
+## Configuration
+
+### Extruder homing
+
+TODO: Just collecting some notes, for now.
+
+
+I'm using a Sherpa mini with a reverse bowden tube. The reverse bowden tube will pop out of the Sherpa because it isn't locked onto it with anything, just a friction fit.
+I think I will give this Sherpa mod a try:
+https://www.printables.com/model/591576-sherpa-mini-with-zero-ecas-and-filament-sensor-mod
+
+I found a simple/faster solution to use. It is a simple bracket that mounts onto the Sherpa mini. This way I don't have to disassemble and reassemble the extruder and be able to instead focus on the ERCF project.
+https://www.printables.com/model/462294-sherpa-mini-ptfe-coupler-holder-reverse-bowden-pc4
+
+
+NOTE: The following is just a copy/paste from the [Happy Hare documentation](https://github.com/moggieuk/Happy-Hare/blob/main/doc/configuration.md)
+
+```yaml
+# Extruder homing ---------------------------------------------------------------------------------------------------------
+#
+# Happy Hare needs a reference "homing point" close to the extruder from which to accurately complete the loading of the toolhead.
+# This homing operation takes place after the fast bowden load and it is anticipated that that load operation will leave the
+# filament just shy of the homing point. If using a toolhead sensor this initial extruder homing is unecessary (but can be forced)
+# because the homing will occur inside the extruder for the optimum in accuracy.
+#
+# In addition to an entry sensor "mmu_extruder" it is possbile to Happy Hare to "feel" for the extruder gear entry by colliding
+# with it. Because this method is not completely deterministic you might find have to find the sweetspot for your setup by adjusting
+# the TMC current reduction. Also, touch (stallguard) sensing is possible to configure but unfortunately doesn't work well with
+# some external EASY-BRD or ERB mcu's. Note that reduced current during collision detection can also prevent unecessary filament griding.
+#
+# Possible homing_endtop names:
+#   collision      - Detect the collision with the extruder gear by monitoring encoder movement
+#   mmu_gear_touch - Use touch (stallguard) detection when the gear stepper hits the extruder
+#   mmu_extruder   - If you have a "filament entry" endstop configured
+# Note the homing_endstop will be ignored if a toolhead sensor is available unless `extruder_force_homing: 1`
+#
+extruder_homing_max: 50			# Maximum distance to advance in order to attempt to home the extruder
+extruder_homing_endstop: collision	# Filament homing method/endstop name
+extruder_homing_current: 40		# % gear_stepper current (10%-100%) to use when homing to extruder homing (100 to disable)
+#
+# In the absence of a toolhead sensor Happy Hare will automatically default to extruder entrance detection regardless of
+# this setting, however if you have a toolhead sensor you can still force the additional (unecessary) step of initially homing to
+# extruder entrance then homing to the toolhead sensor
+extruder_force_homing: 0
+```
+`gsx8299` helped me with some questions about this and offered some [advice](https://discord.com/channels/460117602945990666/909743915475816458/1176955206626459669).
+
+
+# ERCF Filament Cutter
+TODO Move following to a new page
+```
+CUTTER_OPEN
+CUTTER_CLOSE
+```
+
+```
+SET_SERVO SERVO=cut_servo  ANGLE=0
+```
+```
+SET_SERVO SERVO=cut_servo  ANGLE=5
+```
+
+
+
