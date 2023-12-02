@@ -11,6 +11,7 @@ nav:
       - Filament blocks: assembly/filament-blocks.md
       - Selector: assembly/selector.md
     - FYSETC ERB board: sidebar/fysetc-erb.md
+    - Servo Arm: sidebar/align-servo.md
     - Happy Hare v2.2: sidebar/happy-hare.md
     - Filament Cutters: sidebar/filament-cutters.md
     - Miscellaneous: sidebar/misc.md
