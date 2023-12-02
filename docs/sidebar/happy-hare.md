@@ -35,7 +35,7 @@ Using the `-i` parameter so that the install script will interactively prompt yo
 
 I intitially thought that "ERCF v2.0" might be the best option, since I'm using SturdyBunny, Thumper Blocks, Springy and Binky. But the problem is that if you choose "ERCF v2.0" some configuration values will be generated based on Happy Hare thinking you're using the 23.05mm wide Triple Decky filament blocks when we're actually using the 21.0mm Thumper Blocks. This ends up breaking the `MMU_CALIBRATE_SELECTOR` auto-calibration later on.
 
-I tried custom but that wasn't sufficient as well. It turns out that "ERCF v1.1. (all variations)" is actually what you want as it will let you specify each mod you're using. When it ask you if you are using "Triple-Decky" just say no and it will end up using the correct 21.0mm width that Thumper Blocks and original SturdyBunny/ERCF uses.
+I tried custom but that wasn't sufficient as well. It turns out that choosing "ERCF v1.1. (all variations)" worked the best as it will let you specify each mod you're using. When it asks you if you are using "Triple-Decky" just say no and it will end up using the correct 21.0mm width that Thumper Blocks and original SturdyBunny/ERCF uses.
 
 Here's what the install script looks like when I ran it and chose the correct options for my particular build.
 
@@ -176,6 +176,8 @@ TODO elaborate on this section.
 * Use `MMU_MOTORS_OFF` to ensure all motors off, move selector manually to middle, use `MMU_HOME` to test selector moves in the proper direction. Adjust config if needed.
 * Check encoder via `MMU_ENCODER`, insert filament and push/pull so it moves the encoder wheel, re-issue `MMU_ENCODER` and value should always increase
 
+Since I had used a spare Nema17 for the gear motor I found that 
+
 
 ## Basic calibration/testing of your ERCF for use with Happy Hare
 
@@ -187,13 +189,13 @@ I will summarize the steps that I followed with some clarification and/or pointe
 Line up the selector against the first gate (Gate 0) so that you can pass filament from inlet side to outlet side. Using your fingers, rotate the selector pulley clockwise/counter-clockwise back and forth slightly, you'll see that there is a small range that you can move the selector as the filament is keeping it in place. Use the pulley
 to center the selector in the middle of this range. 
 
-> Pro Tip: Look at the belt teeth by the selector edge, using the selector edge as visual marker. This will tell you how much range is available, usually around one tooth. Halve this number of teeth to find the center.
+> Pro Tip: Look down and see where the side of the selector lines up against a filament block hopefully its just a couple of millimeters away from a filament block edge. Then move back the selector back and forth until you figure out the range that it travels, then slide the selector's edge until it is in the middle of that range. Alternatively  look at the belt teeth by the selector edge, using the selector edge as visual marker. Move the selector back and forth and see how many teeth/valleys it travels within. This will tell you how much range is available, usually around two teeth/valleys. Halve this number to find the center and place the selector's edge at that point.
 
 ```
 MMU_CALIBRATE_SELECTOR GATE=0
 ```
 
-Repeat this process for gate 1 and changing the macro `GATE` parameter to `1`
+Repeat this process for gate 1 and changing the `GATE` parameter to `1`
 ```
 MMU_CALIBRATE_SELECTOR GATE=1
 ```
@@ -216,80 +218,170 @@ Issue the following in the console to home the selector and the move the selecto
 ```
 MMU_HOME TOOL=2
 ```
+> Note: You could also just use `MMU_HOME` (without the specifying `TOOL`) in which case gate 0 will be selected.
+
 Have at least 400mm of filament handy. Either a length you've cut to size or on a spool holder that can freely feed this amount to the ERCF.
+Feed this by hand into the gate until the filament exits the ECAS04 collet on the selector and then pull back until it is flush with the collet.
 
+Attempt to move 100mm of filament
 ```
-MMU_SERVO POS=down
+MMU_TEST_MOVE MOVE=100
 ```
 
+Measure how much was actually moved and enter the following command with that value. That's it. Happy Hare now knows how to much to move the stepper motor to move a particular amount of filament.
+```
+MMU_CALIBRATE_GEAR MEASURED=99.5
+```
+
+### Step 4. Calibrate encoder
 ```
 MMU_CALIBRATE_ENCODER
 ```
 
 ### Step 3. Calibrate bowden length
 
+The Happy Hardware documentation now wants you to calibrate the bowden length, and another simple macro is used for that. You just need to guesstimate the length of the bowden tube and subtract about 30mm from your guess. Let's say I measure around 350mm. I'd use this command.
+```
+MMU_CALIBRATE_BOWDEN BOWDEN_LENGTH=350
+```
 
-## Configuration
+#### But wait!
+There are a few things I think you should really test/adjust **before** trying to calibrate your bowden length. This is important because this will be the first calibration step that will use the servo and push down on the tophats. So I really think it is important to ensure the servo arm is properly installed and if you're using the Springy mod, properly tensioned.
 
-### Extruder homing
+[Here is a short writeup on how I setup the servo arm](./align-servo.md)
 
-TODO: Just collecting some notes, for now.
 
+> Note: By default Happy Hare configures itself to use "collision" method. You can verify this by examining your `mmu_parameters.cfg` file and looking search for `extruder_homing_endstop`. While I eventually switched to using the "touch" (Stallguard) method I'm keeping my notes for when I used the "collision" method.
+
+But wait...there's more! **Another important thing** you must do is check your `mmu_hardware.cfg` and ensure the run current is appropriate for your gear stepper motor.
+
+
+```yaml
+# FILAMENT DRIVE GEAR STEPPER  ---------------------------------------------------------------------------------------------
+# Note that 'mmu_toolhead' endstop will automatically be added if a toolhead sensor is defined
+#
+# The default values are tested with the BOM NEMA14 motor. Please adapt these values to the motor you are using
+# Example : for NEMA17 motors, you'll usually use higher current
+#
+[tmc2209 stepper_mmu_gear]
+uart_pin: mmu:MMU_GEAR_UART
+uart_address: 0 			# Comment out for ERB board
+interpolate: True
+run_current: 0.5			# NEMA14 motor
+hold_current: 0.1			# Recommend this is minimal to reduce power consumption (unless issues with TMC stallguard)
+sense_resistor: 0.110			# 0.15 for BTT TMC2226
+stealthchop_threshold: 0		# Spreadcycle has more torque and better at speed
+#
+# Uncomment two lines below if you have TMC and want the ability to use filament "touch" homing with gear stepper
+#diag_pin: ^mmu:MMU_GEAR_DIAG		# Set to MCU pin connected to TMC DIAG pin for gear stepper
+#driver_SGTHRS: 60			# 255 is most sensitive value, 0 is least sensitive
+```
+
+The `run_current` parameter is what you want to verify and possibly adjust. I'm using a Nema17 pancake motor, the default value you see here of `0.5` wasn't sufficient for my case. I initially had issues trying to calibrate my Bowden tube length because of this!!! It took me a bit of head scratching and inspecting the Happy Hare logs and Happy Hare source code to figure out that the process it was using to check for when the filament hit the extruder ("collision") wasn't working because the run current was too low. 
+I decided to use `0.650` and that worked for my particular setup.
+
+### What `MMU_CALIBRATE_BOWDEN` actually does
+
+Okay, if you've addressed those pre-requisites we're almost ready to run the `MMU_CALIBRATE_BOWDEN` command that I mentioned. But let me describe how it works. 
+In this example we'll say the bowden tube is about 530mm and we'll execute the following command.
+
+```
+MMU_CALIBRATE_BOWDEN BOWDEN_LENGTH=500 
+```
+
+Happy Hare will spin the gear motor until 500mm of filament have been extended into the bowden tube. Then it will repeatedly push out 3mm of filament, after each push it will see if the filament has moved or if it has collided with the extruder gears. When it detects no movement has occured after a push it concludes that it has collided with the extruder gears and stops trying to push any more filament. It does this three times.
+
+> Note: During those 3mm steps that it performs, it reduces the run current of the stepper motor. This way when the filament collides with the extruder gears the gear stepper motor can skip steps or the BMG gears slip. I don't know exactly which of these two it is designed to do but I'm hoping the stepper motor skips rather than the BMG gears grinding the filament.
+
+Okay. Run that command with a guess of how long your filament is. When you do this watch the filament end through your reverse Bowden tube. Hopefully you'll see it push the filament through tube and stop before it hits the extruder and then it performs those incremental 3mm steps until it hits. If it doesn't stop before the extruder and just rams into it reduce the `BOWDEN_LENGTH` value. If it stops too soon and then performs those 3mm incremental steps but never reaches the extruder than increase the value of the `BOWDEN_LENGTH` parameter (or add the `HOMING_MAX=100` parameter as the default is 50 and 100 or more can be specified).
+
+Okay...if all goes well Happy Hare will perform 3 full tests (that you'll see being logged into the console) and then it will compute and save the actual length it detected and this part of your calibration is now done!
+
+### Make sure your extruder/toolhead has a collet to lock down your reverse bowden tube.
 
 I'm using a Sherpa mini with a reverse bowden tube. The reverse bowden tube will pop out of the Sherpa because it isn't locked onto it with anything, just a friction fit.
-I think I will give this Sherpa mod a try:
-https://www.printables.com/model/591576-sherpa-mini-with-zero-ecas-and-filament-sensor-mod
+I ended up rebuilding it with this ["Sherpa Mini with Zero, ECAS, and Filament Sensor mods"](https://www.printables.com/model/591576-sherpa-mini-with-zero-ecas-and-filament-sensor-mod)
 
-I found a simple/faster solution to use. It is a simple bracket that mounts onto the Sherpa mini. This way I don't have to disassemble and reassemble the extruder and be able to instead focus on the ERCF project.
-https://www.printables.com/model/462294-sherpa-mini-ptfe-coupler-holder-reverse-bowden-pc4
+
+
 
 
 NOTE: The following is just a copy/paste from the [Happy Hare documentation](https://github.com/moggieuk/Happy-Hare/blob/main/doc/configuration.md)
 
-```yaml
-# Extruder homing ---------------------------------------------------------------------------------------------------------
-#
-# Happy Hare needs a reference "homing point" close to the extruder from which to accurately complete the loading of the toolhead.
-# This homing operation takes place after the fast bowden load and it is anticipated that that load operation will leave the
-# filament just shy of the homing point. If using a toolhead sensor this initial extruder homing is unecessary (but can be forced)
-# because the homing will occur inside the extruder for the optimum in accuracy.
-#
-# In addition to an entry sensor "mmu_extruder" it is possbile to Happy Hare to "feel" for the extruder gear entry by colliding
-# with it. Because this method is not completely deterministic you might find have to find the sweetspot for your setup by adjusting
-# the TMC current reduction. Also, touch (stallguard) sensing is possible to configure but unfortunately doesn't work well with
-# some external EASY-BRD or ERB mcu's. Note that reduced current during collision detection can also prevent unecessary filament griding.
-#
-# Possible homing_endtop names:
-#   collision      - Detect the collision with the extruder gear by monitoring encoder movement
-#   mmu_gear_touch - Use touch (stallguard) detection when the gear stepper hits the extruder
-#   mmu_extruder   - If you have a "filament entry" endstop configured
-# Note the homing_endstop will be ignored if a toolhead sensor is available unless `extruder_force_homing: 1`
-#
-extruder_homing_max: 50			# Maximum distance to advance in order to attempt to home the extruder
-extruder_homing_endstop: collision	# Filament homing method/endstop name
-extruder_homing_current: 40		# % gear_stepper current (10%-100%) to use when homing to extruder homing (100 to disable)
-#
-# In the absence of a toolhead sensor Happy Hare will automatically default to extruder entrance detection regardless of
-# this setting, however if you have a toolhead sensor you can still force the additional (unecessary) step of initially homing to
-# extruder entrance then homing to the toolhead sensor
-extruder_force_homing: 0
-```
 `gsx8299` helped me with some questions about this and offered some [advice](https://discord.com/channels/460117602945990666/909743915475816458/1176955206626459669).
 
 
-# ERCF Filament Cutter
-TODO Move following to a new page
+Here is the command line I used:
 ```
-CUTTER_OPEN
-CUTTER_CLOSE
+MMU_CALIBRATE_BOWDEN BOWDEN_LENGTH=300 HOMING_MAX=100
 ```
 
-```
-SET_SERVO SERVO=cut_servo  ANGLE=0
-```
-```
-SET_SERVO SERVO=cut_servo  ANGLE=5
+I experienced some issues and "worked around" them. But after thinking about it I realized there must be something going on. The main issue
+was that Happy Hare wasn't homing unless I gave a value *more* than the bowden length. I re-read the Happy Hare documentation and it is
+supposed to advance up to `extruder_homing_max` (which is set to `50`) as it tries to collide with the extruder. This definitely wasn't happening for me.
+I then examined the source code and traced it down to the code that performs this advancement. It logs how many steps it will take and the outcome of each step.
+Ah...so the logfile should have clues! It is found at `~/printer_data/logs/mmu.log`
+
+```log
+11:28:57 Calibrating bowden length from reference Gate #0
+11:28:57 - DEBUG: Selecting tool T0 on gate #0...
+11:28:57 Tool T0 enabled
+11:28:57 - - TRACE: Setting MMU gear motor rotation distance ratio to 1.000000
+11:28:57 - - TRACE: Processing idle_timeout 'printing' event
+11:28:58 - DEBUG: Setting servo to down (filament drive) position at angle: 135
+11:29:00 - - TRACE: Initial load into encoder. Stepper: 'gear' moved 70.0mm, encoder measured 45.7mm (delta 24.3mm). Pos: @70.0, (45.7mm)
+11:29:00 - DEBUG: Loading bowden tube
+11:29:02 - - TRACE: Course loading move #1 into bowden. Stepper: 'gear' moved 254.3mm, encoder measured 253.2mm (delta 1.1mm). Pos: @300.0, (299.9mm)
+11:29:02 Finding extruder gear position (try #1 of 3)...
+11:29:02 - DEBUG: Homing to extruder gear, up to 50.0mm in 3.0mm steps
+11:29:02 Modifying MMU gear stepper run current to 27% for collision detection
+11:29:03 - - TRACE: Homing step #1. Stepper: 'gear' moved 3.0mm, encoder measured 0.0mm (delta 3.0mm). Pos: @303.0, (300.8mm)
+11:29:03 - DEBUG: Extruder entrance found after 3.0mm move (1 steps), encoder measured 0.0mm (delta 3.0mm)
+11:29:03 Restoring MMU gear stepper run current to 100% configured
+11:29:03 - DEBUG: Setting servo to up (filament released) position at angle: 50
+11:29:04 Failed to detect a reliable home position on this attempt
 ```
 
+This line is crucial:
+```
+11:29:03 - - TRACE: Homing step #1. Stepper: 'gear' moved 3.0mm, encoder measured 0.0mm (delta 3.0mm). Pos: @303.0, (300.8mm)
+```
+It tells us that the very first step it executed to creep towards the extruder didn't work. It moved the gear 3mm but the filament didn't move at all.
+**My guess is that my reduced run current was too low**
 
+
+
+
+## Setting up "Touch" (Stallguard) for extruder
+
+Like I mentioned earlier, I initially used "collision" method but based on a post from Xon about "touch", I agreed with their description that "touch" is better as it doesn't lead to (as much) grinding of the filament. That is if you can make it work.
+
+Adjust `mmu_hardware.cfg` to enable stallguard (touch). Here is what that section looks like by default:
+```yaml
+# SELECTOR STEPPER  --------------------------------------------------------------------------------------------------------
+#
+[tmc2209 stepper_mmu_selector]
+uart_pin: mmu:MMU_SEL_UART
+uart_address: 1 			# Comment out for ERB board
+run_current: 0.4			# NEMA14 motor
+hold_current: 0.2			# Recommend this is small to reduce power consumption (unless issues with TMC stallguard)
+interpolate: True
+sense_resistor: 0.110
+stealthchop_threshold: 100		# Stallguard "touch" movement (slower speeds) best done with stealthchop
+#
+# Uncomment two lines below if you have TMC and want to use selector "touch" movement and homing
+#diag_pin: ^mmu:MMU_SEL_DIAG 		# Set to MCU pin connected to TMC DIAG pin for selector stepper
+#driver_SGTHRS: 75			# 255 is most sensitive value, 0 is least sensitive
+```
+
+Those last two lines need to be uncommented (remove the leading `#` character). 
+While testing this and playing with the sensitivity values I found that the default of 60 worked, while a value of 90 was too sensitive
+
+Docs say you can adjust the current when using "collision" method, not sure this setting also applies when using "touch"
+I'm gong to try it. For collision I use 45%
+```
+extruder_homing_current: 35		# % gear_stepper current (10%-100%) to use when homing to extruder homing (100 to disable)
+```
+
+Use the `MMU_CALIBRATE_BOWDEN` command as previously described after the above tests. It will not perform that incremental stepping to hit the extruder gears like it does with the "collision" method.
 
