@@ -306,36 +306,30 @@ MMU_CALIBRATE_BOWDEN BOWDEN_LENGTH=500
 
 Happy Hare will spin the gear motor until 500mm of filament have been extended into the bowden tube. Then it will repeatedly push out 3mm of filament, after each push it will see if the filament has moved or if it has collided with the extruder gears. When it detects no movement has occured after a push it concludes that it has collided with the extruder gears and stops trying to push any more filament. It does this three times.
 
-> Note: During those 3mm steps that it performs, it reduces the run current of the stepper motor. This way when the filament collides with the extruder gears the gear stepper motor can skip steps or the BMG gears slip. I don't know exactly which of these two it is designed to do but I'm hoping the stepper motor skips rather than the BMG gears grinding the filament.
+> Note: During those 3mm steps that it performs, it **reduces the run current** of the stepper motor. This way when the filament collides with the extruder gears the gear stepper motor can skip steps or the BMG gears slip. I don't know exactly which of these two it is designed to do but I'm hoping the stepper motor skips rather than the BMG gears grinding the filament. 
 
 Okay. Run that command with a guess of how long your filament is. When you do this watch the filament end through your reverse Bowden tube. Hopefully you'll see it push the filament through tube and stop before it hits the extruder and then it performs those incremental 3mm steps until it hits. If it doesn't stop before the extruder and just rams into it reduce the `BOWDEN_LENGTH` value. If it stops too soon and then performs those 3mm incremental steps but never reaches the extruder than increase the value of the `BOWDEN_LENGTH` parameter (or add the `HOMING_MAX=100` parameter as the default is 50 and 100 or more can be specified).
 
 Okay...if all goes well Happy Hare will perform 3 full tests (that you'll see being logged into the console) and then it will compute and save the actual length it detected and this part of your calibration is now done!
 
-### Make sure your extruder/toolhead has a collet to lock down your reverse bowden tube.
+**One last thing** 
 
-I'm using a Sherpa mini with a reverse bowden tube. The reverse bowden tube will pop out of the Sherpa because it isn't locked onto it with anything, just a friction fit.
-I ended up rebuilding it with this ["Sherpa Mini with Zero, ECAS, and Filament Sensor mods"](https://www.printables.com/model/591576-sherpa-mini-with-zero-ecas-and-filament-sensor-mod)
+You might want to consider tuning the reduced run current I mentioned earlier. The HappyHare docs say you can adjust the current when using "collision" method by adjusting the `extruder_homing_current` parameter in your `mmu_parameters.cfg` file. Here's what that section looks like:
 
-
-
-
-
-NOTE: The following is just a copy/paste from the [Happy Hare documentation](https://github.com/moggieuk/Happy-Hare/blob/main/doc/configuration.md)
-
-`gsx8299` helped me with some questions about this and offered some [advice](https://discord.com/channels/460117602945990666/909743915475816458/1176955206626459669).
-
-
-Here is the command line I used:
 ```
-MMU_CALIBRATE_BOWDEN BOWDEN_LENGTH=300 HOMING_MAX=100
+extruder_homing_current: 40		# % gear_stepper current (10%-100%) to use when homing to extruder homing (100 to disable)
 ```
 
-I experienced some issues and "worked around" them. But after thinking about it I realized there must be something going on. The main issue
-was that Happy Hare wasn't homing unless I gave a value *more* than the bowden length. I re-read the Happy Hare documentation and it is
-supposed to advance up to `extruder_homing_max` (which is set to `50`) as it tries to collide with the extruder. This definitely wasn't happening for me.
-I then examined the source code and traced it down to the code that performs this advancement. It logs how many steps it will take and the outcome of each step.
-Ah...so the logfile should have clues! It is found at `~/printer_data/logs/mmu.log`
+
+### The `mmu.log` can help you diagnose things
+Remember about that `run_current` setting? The reason I know about it is because I initially did this bowden calibration wrong by trying to work around a weird issue, not recognizing it for what it really was. Here's the story...
+
+The main issue I had trying to calibrate the bowden tube length was that Happy Hare was never pushing the filament to the extruder gears unless I overshot *by a large amount* the guesstimated distance from the ERCF to the extruder. So to make it "work" I simply gave it a large value until it hit the extruders and then it was able to detect that the filament had stopped and definitely "collided" with the extruder gears. I did not know how HappyHare was supposed to work and thought I just needed to do that. But I recognized later that this just didn't seem right. 
+
+
+I re-read the Happy Hare documentation and it is supposed to advance up to `extruder_homing_max` (which is set to `50`) as it tries to collide with the extruder. This definitely wasn't happening for me. It would simply say "sorry...not working" (not really...but something short and simple was displayed...can't remember what exactly).
+I then examined the source code and traced it down to the code that performs this advancement. The code will *log* how many steps it will take and the outcome of each step.
+Ah...so the logfile should have clues! It is found at `~/printer_data/logs/mmu.log`. Sure enough, here is the relevant info it logged
 
 ```log
 11:28:57 Calibrating bowden length from reference Gate #0
@@ -361,10 +355,17 @@ This line is crucial:
 ```
 11:29:03 - - TRACE: Homing step #1. Stepper: 'gear' moved 3.0mm, encoder measured 0.0mm (delta 3.0mm). Pos: @303.0, (300.8mm)
 ```
-It tells us that the very first step it executed to creep towards the extruder didn't work. It moved the gear 3mm but the filament didn't move at all.
-**My guess is that my reduced run current was too low**
+It tells us that *the very first step* it executed to creep towards the extruder didn't work. It moved the gear 3mm but the filament didn't move at all.
+**My guess is that my reduced run current was too low**. And after finding the correct parameter to adjust and bumping it up, I could observe that Happy Hare was now able to creep the remaining distance using 3mm steps.
+
+> Moral of the story: The log file along with some deductive reasoning can help. Even if you aren't able to decipher the log, you might be able to share it with someone (say over discord) who can help as it will give them more specific info about what might be happening
 
 
+### Ensure your bowden tube is locked to the extruder
+
+I'm using a Sherpa mini with a reverse bowden tube. The reverse bowden tube will pop out of a standard Sherpa mini because it isn't locked onto it with anything, just a hole with a slight friction fit.
+
+I ended up rebuilding it with this ["Sherpa Mini with Zero, ECAS, and Filament Sensor mods"](https://www.printables.com/model/591576-sherpa-mini-with-zero-ecas-and-filament-sensor-mod)
 
 
 ## Setting up "Touch" (Stallguard) for extruder
