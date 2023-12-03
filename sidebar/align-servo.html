@@ -659,7 +659,8 @@ MMU_SERVO POS=down
 MMU_SERVO POS=up
 </code></pre>
 <p>Place the servo arm into position so that it looks similar to what you see in the following pictures.</p>
-<p>TODO, place pictures here</p>
+<p>Servo arm in UP position as viewed from back (showing the stopper portion of the arm)
+<img alt="image" src="https://gist.github.com/assets/875866/dc209291-94c5-4048-a49b-7cfaa89a0379" /></p>
 <p>From the backside notice how the stopper portion of the arm is just about touching the body of the servo, but with a slight gap. This may differ by a tiny amount (compared to my pics) because each servo is different and the splines might line up just a tad bit different than mine has. If it doesn't seem right you can retry and adjust by one spline tooth to see if that looks better.</p>
 <p>Once you're happy with the position of the arm snug it down with the screw. The Happy Hare default values for <code>UP</code> and <code>DOWN</code> position are pretty good but I strongly suggest you test it out and fine tune it. At the very least make sure the values aren't too high or low so that the servo doesn't try to go beyond the range that its physical stopper allows it. Since you've installed the servo arm while the servo was in the <code>UP</code> position hopefully you'll only need to fine tune the <code>DOWN</code> position (if needed).</p>
 <p>Issue the following command to see how the arm looks when in the <code>DOWN</code> position</p>
@@ -668,6 +669,8 @@ MMU_SERVO POS=up
 <p>Try toggling back and forth between the two positions to make sure you're happy with everything. If the servo is trying to go a little too far past its physical limits you can adjust the servo angles used for <code>UP</code> and <code>DOWN</code>. I describe how to do that in the following section.</p>
 <h2 id="fine-tuning-the-servo-arm-angles">Fine tuning the servo arm angles</h2>
 <p>You should first make sure your <code>DOWN</code> angle isn't too high that the servo arm bumpstop (portion of the servo arm) isn't colliding with the body of the servo. This will be your maximum angle to use when fine tuning. The default that Happy Hare set for you might be perfectly fine, but it is best to check for yourself.</p>
+<p>Servo arm in DOWN position as viewed from back (showing the stopper portion of the arm)
+<img alt="image" src="https://gist.github.com/assets/875866/6cf2ac3b-422c-46e3-9816-2a26120a2824" /></p>
 <p>After that you should fine tune the <code>DOWN</code> angle so that the servo arm achieves an ideal position against the tophats of your filament blocks. What that angle is depends on which filament block tophat you have (Triple-Decky vs Thumper Blocks) and also your servo choice. I can provide you some general guidelines based on my own experience.</p>
 <p>If you're using Springy, back off on the tensioner screw all the way. Swing up the upper part of the ERCF so you can easily view the servo. Back off that screw while applying slight pressure to the servo and watch and feel until you know it has reached its upper limit of travel. </p>
 <blockquote>
