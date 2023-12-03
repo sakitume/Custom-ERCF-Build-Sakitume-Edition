@@ -213,6 +213,21 @@ You can also use `MMU_HOME` command to select a gate/tool but this command will 
 
 > Note: If you execute the either `MMU_HOME` or `MMU_SELECT` command, the selector motor will remain engaged. Do not try to manually move the selector unless you turn off the motor via `MMU_MOTORS_OFF`.
 
+
+The "end" block (part `Filament_Blocks_End_Nobearing_V2A.stl`) has a built-in bypass hole. It doesn't have an ECAS collet like a real filament block but is usable as a quick and easy bypass. 
+
+
+Filament End block with bypass hole
+![image](https://gist.github.com/assets/875866/5309e270-5f31-4aac-8081-430fc94f0af7)
+
+
+If you wish to use this then you should also configure HappyHare about its offset now. Its the same procedure. Line up the selector to this bypass hole, feed the filament and center the selectior. Then issue this command so it knows you're setting the position for the bypass.
+
+```
+MMU_CALIBRATE_SELECTOR BYPASS=1
+```
+
+
 ### Step 2. Calibrate your gear stepper
 Issue the following in the console to home the selector and the move the selector to a convenient gate (gate 2 in this case)
 ```

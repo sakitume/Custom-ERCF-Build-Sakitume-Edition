@@ -23,7 +23,8 @@ MMU_SERVO POS=up
 
 Place the servo arm into position so that it looks similar to what you see in the following pictures.
 
-TODO, place pictures here
+Servo arm in UP position as viewed from back (showing the stopper portion of the arm)
+![image](https://gist.github.com/assets/875866/dc209291-94c5-4048-a49b-7cfaa89a0379)
 
 From the backside notice how the stopper portion of the arm is just about touching the body of the servo, but with a slight gap. This may differ by a tiny amount (compared to my pics) because each servo is different and the splines might line up just a tad bit different than mine has. If it doesn't seem right you can retry and adjust by one spline tooth to see if that looks better.
 
@@ -39,6 +40,10 @@ Try toggling back and forth between the two positions to make sure you're happy 
 ## Fine tuning the servo arm angles
 
 You should first make sure your `DOWN` angle isn't too high that the servo arm bumpstop (portion of the servo arm) isn't colliding with the body of the servo. This will be your maximum angle to use when fine tuning. The default that Happy Hare set for you might be perfectly fine, but it is best to check for yourself.
+
+Servo arm in DOWN position as viewed from back (showing the stopper portion of the arm)
+![image](https://gist.github.com/assets/875866/6cf2ac3b-422c-46e3-9816-2a26120a2824)
+
 
 After that you should fine tune the `DOWN` angle so that the servo arm achieves an ideal position against the tophats of your filament blocks. What that angle is depends on which filament block tophat you have (Triple-Decky vs Thumper Blocks) and also your servo choice. I can provide you some general guidelines based on my own experience.
 
