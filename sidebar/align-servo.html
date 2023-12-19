@@ -350,7 +350,7 @@
         
   
   <span class="md-ellipsis">
-    Filament blocks
+    Filament Blocks
   </span>
   
 
@@ -375,6 +375,102 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Servo Arm
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="align-servo.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Servo Arm
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#aligning-the-servo-arm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aligning the servo arm
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fine-tuning-the-servo-arm-angles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fine tuning the servo arm angles
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fine tuning the servo arm angles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-set-the-servo-angle" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to set the servo angle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#my-final-angles" class="md-nav__link">
+    <span class="md-ellipsis">
+      My final angles
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -508,16 +604,80 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="happy-hare.html" class="md-nav__link">
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
   
   <span class="md-ellipsis">
     Happy Hare v2.2
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Happy Hare v2.2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="happy-hare.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Basics
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="tip-tuning.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Standlone Tip Tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -703,6 +863,9 @@ servo_move_angle: 30            # Optional angle used when selector is moved (de
 <p>The <code>servo_down_angle</code> is set to 140. That means when the <code>MMU_SERVO POS=down</code> command is executed, the angle of the servo arm is set to 140. If that is too much, or too little you the following command provide different values for the <code>ANGLE</code> parameter. The example below sets the servo angle to 130.</p>
 <pre><code>SET_SERVO SERVO=mmu_servo  ANGLE=130
 </code></pre>
+<blockquote>
+<p>Note: You could also use the equivalent (but shorter) <code>MMU_SERVO ANGLE=130</code></p>
+</blockquote>
 <p>So the process I used to set the angle was to issue <code>MMU_SERVO POS=down</code> (after selecting a gate of course), then by visually inspecting and/or testing for filament slip I could use <code>SET_SERVO SERVO=mmu_servo  ANGLE=XXX</code> (where <code>XXX</code> is a guess of what I think might work better) to test an angle. Once I found a value that I liked I then edited the value of <code>servo_down_angle</code> in the <code>mmu_parameters.cfg</code> file.</p>
 <blockquote>
 <p>You'll try to get what you think is a good feel or compromise. What the exact angle and/or Springy tensioner adjustment you should have is something you'll need to judge for yourself and will likely want to fine tune even further once you have your ERCF up and running and you work out issues that come up.</p>

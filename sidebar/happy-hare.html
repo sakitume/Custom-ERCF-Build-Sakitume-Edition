@@ -12,7 +12,7 @@
         <link rel="prev" href="align-servo.html">
       
       
-        <link rel="next" href="filament-cutters.html">
+        <link rel="next" href="tip-tuning.html">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Happy Hare v2.2 - Sakitume's Custom ERCF Build</title>
+        <title>The Basics - Sakitume's Custom ERCF Build</title>
       
     
     
@@ -105,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Happy Hare v2.2
+              The Basics
             
           </span>
         </div>
@@ -350,7 +350,7 @@
         
   
   <span class="md-ellipsis">
-    Filament blocks
+    Filament Blocks
   </span>
   
 
@@ -371,6 +371,26 @@
   
   <span class="md-ellipsis">
     Selector
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="align-servo.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Servo Arm
   </span>
   
 
@@ -432,6 +452,44 @@
     
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Happy Hare v2.2
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Happy Hare v2.2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
     <li class="md-nav__item md-nav__item--active">
       
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
@@ -444,7 +502,7 @@
           
   
   <span class="md-ellipsis">
-    Happy Hare v2.2
+    The Basics
   </span>
   
 
@@ -455,7 +513,7 @@
         
   
   <span class="md-ellipsis">
-    Happy Hare v2.2
+    The Basics
   </span>
   
 
@@ -605,9 +663,46 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#mmu_test_config" class="md-nav__link">
+    <span class="md-ellipsis">
+      MMU_TEST_CONFIG
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="tip-tuning.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Standlone Tip Tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -801,6 +896,15 @@
   <a href="#setting-up-touch-stallguard-for-extruder" class="md-nav__link">
     <span class="md-ellipsis">
       Setting up "Touch" (Stallguard) for extruder
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mmu_test_config" class="md-nav__link">
+    <span class="md-ellipsis">
+      MMU_TEST_CONFIG
     </span>
   </a>
   
@@ -1005,7 +1109,7 @@ to center the selector in the middle of this range. </p>
 <p>The "end" block (part <code>Filament_Blocks_End_Nobearing_V2A.stl</code>) has a built-in bypass hole. It doesn't have an ECAS collet like a real filament block but is usable as a quick and easy bypass. </p>
 <p>Filament End block with bypass hole
 <img alt="image" src="https://gist.github.com/assets/875866/5309e270-5f31-4aac-8081-430fc94f0af7" /></p>
-<p>If you wish to use this then you should also configure HappyHare about its offset now. Its the same procedure. Line up the selector to this bypass hole, feed the filament and center the selectior. Then issue this command so it knows you're setting the position for the bypass.</p>
+<p>If you wish to use this then you should also configure HappyHare about its offset now. Its the same procedure. Line up the selector to this bypass hole, feed the filament and center the selector. Then issue this command so it knows you're setting the position for the bypass.</p>
 <pre><code>MMU_CALIBRATE_SELECTOR BYPASS=1
 </code></pre>
 <h3 id="step-2-calibrate-your-gear-stepper">Step 2. Calibrate your gear stepper</h3>
@@ -1109,6 +1213,13 @@ Ah...so the logfile should have clues! It is found at <code>~/printer_data/logs/
 <p>I'm using a Sherpa mini with a reverse bowden tube. The reverse bowden tube will pop out of a standard Sherpa mini because it isn't locked onto it with anything, just a hole with a slight friction fit.</p>
 <p>I ended up rebuilding it with this <a href="https://www.printables.com/model/591576-sherpa-mini-with-zero-ecas-and-filament-sensor-mod">"Sherpa Mini with Zero, ECAS, and Filament Sensor mods"</a></p>
 <h2 id="setting-up-touch-stallguard-for-extruder">Setting up "Touch" (Stallguard) for extruder</h2>
+<blockquote>
+<p>Note: While it looked really promising, I discovered that I would occassionally get fatal Klipper errors about TMC "Undervoltage!"
+errors when tring to use this technique. So I ended up switching back to collision, and then eventually I installed a "toolhead sensor"
+and that is really the best way to get your system to reliably work. I've kept the following info in case I get new hardware and want to retry "touch" homing. Or maybe I'm feeling
+adventurous and want to play with <code>stealthchop_threshold</code> values to work around the issue. Read the latest HappyHare documentation
+and you'll see moggieuk has some notes about this.</p>
+</blockquote>
 <p>Like I mentioned earlier, I initially used "collision" method but based on a post from Xon about "touch", I agreed with their description that "touch" is better as it doesn't lead to (as much) grinding of the filament. That is if you can make it work.</p>
 <p>Adjust <code>mmu_hardware.cfg</code> to enable stallguard (touch). Here is what that section looks like by default:</p>
 <pre><code class="language-yaml"># SELECTOR STEPPER  --------------------------------------------------------------------------------------------------------
@@ -1133,6 +1244,83 @@ I'm gong to try it. For collision I use 45%</p>
 <pre><code>extruder_homing_current: 35     # % gear_stepper current (10%-100%) to use when homing to extruder homing (100 to disable)
 </code></pre>
 <p>Use the <code>MMU_CALIBRATE_BOWDEN</code> command as previously described after the above tests. It will not perform that incremental stepping to hit the extruder gears like it does with the "collision" method.</p>
+<h2 id="mmu_test_config"><code>MMU_TEST_CONFIG</code></h2>
+<p>This is a useful command that will let you change the values of numerous parameters "on-the-fly" so you don't have to edit a configuration file and restart Klipper to have your changes take effect. The only caveat is that once you have found values that work using this method you must remember to edit those configuration files to use these new values.</p>
+<p>Run the command without any parameters for a listing of what is available to tweak:</p>
+<pre><code>MMU_TEST_CONFIG
+</code></pre>
+<p>This is what I currently get back:</p>
+<pre><code class="language-yaml">SPEEDS:
+gear_from_buffer_speed = 160.0
+gear_from_buffer_accel = 400.0
+gear_from_spool_speed = 60.0
+gear_from_spool_accel = 100.0
+gear_short_move_speed = 60.0
+gear_short_move_accel = 400.0
+gear_short_move_threshold = 60.0
+gear_homing_speed = 50.0
+extruder_homing_speed = 15.0
+extruder_load_speed = 15.0
+extruder_unload_speed = 15.0
+extruder_sync_load_speed = 16.0
+extruder_sync_unload_speed = 16.0
+extruder_accel = 400.0
+selector_move_speed = 200.0
+selector_homing_speed = 60.0
+selector_touch_speed = 80.0
+selector_touch_enable = 0
+
+TMC &amp; MOTOR SYNC CONTROL:
+sync_to_extruder = 1
+sync_form_tip = 1
+sync_gear_current = 50
+extruder_homing_current = 35
+extruder_form_tip_current = 100
+
+LOADING/UNLOADING:
+bowden_apply_correction = 0
+bowden_allowable_load_delta = 20
+bowden_pre_unload_test = 1
+extruder_force_homing = 1
+extruder_homing_endstop = mmu_gear_touch
+extruder_homing_max = 50.0
+toolhead_sync_unload = 1
+toolhead_homing_max = 40.0
+toolhead_extruder_to_nozzle = 54.0
+toolhead_sensor_to_nozzle = 62.0
+gcode_load_sequence = 0
+gcode_unload_sequence = 0
+
+OTHER:
+z_hop_height_error = 5.0
+z_hop_height_toolchange = 0.0
+z_hop_speed = 15.0
+enable_clog_detection = 2
+enable_endless_spool = 0
+enable_spoolman = 0
+slicer_tip_park_pos = 0.0
+force_form_tip_standalone = 0
+strict_filament_recovery = 0
+encoder_move_validation = 1
+auto_calibrate_gates = 0
+retry_tool_change_on_error = 0
+print_start_detection = 1
+log_level = 1
+log_visual = 2
+log_statistics = 1
+pause_macro = PAUSE
+form_tip_macro = _MMU_FORM_TIP_STANDALONE
+
+CALIBRATION:
+mmu_calibration_bowden_length = 529.3
+mmu_calibration_clog_length = 8.3
+</code></pre>
+<p>So lets say I want to switch to another tip forming macro that I have like this one that got from Gennro. It is named <code>_MMU_FORM_TIP_GENNRO</code>.</p>
+<pre><code>MMU_TEST_CONFIG form_tip_macro=_MMU_FORM_TIP_GENNRO
+</code></pre>
+<blockquote>
+<p>It is important to ensure there are no spaces between parmeter name, the <code>=</code> character and the value.</p>
+</blockquote>
 
 
 

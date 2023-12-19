@@ -1,0 +1,1060 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="happy-hare.html">
+      
+      
+        <link rel="next" href="filament-cutters.html">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.9">
+    
+    
+      
+        <title>Standlone Tip Tuning - Sakitume's Custom ERCF Build</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.78cf6014.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#use-the-happyhare-documentation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Sakitume&#39;s Custom ERCF Build" class="md-header__button md-logo" aria-label="Sakitume's Custom ERCF Build" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Sakitume's Custom ERCF Build
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Standlone Tip Tuning
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Sakitume&#39;s Custom ERCF Build" class="md-nav__button md-logo" aria-label="Sakitume's Custom ERCF Build" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Sakitume's Custom ERCF Build
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="custom-build-description.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The custom build
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="the-mods.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The various mods
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="printing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Printing the parts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Assembling the parts
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Assembling the parts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assembly/prep.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prep
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assembly/gearbox.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gearbox
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assembly/filament-blocks.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Filament Blocks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assembly/selector.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Selector
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="align-servo.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Servo Arm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fysetc-erb.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FYSETC ERB board
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="align-servo.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Servo Arm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Happy Hare v2.2
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Happy Hare v2.2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="happy-hare.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Basics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Standlone Tip Tuning
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="tip-tuning.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Standlone Tip Tuning
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#use-the-happyhare-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use the HappyHare documentation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finally-found-some-more-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      Finally found some more info!
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-about-happyhare-tip-tuning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning about HappyHare tip tuning
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faster-way-to-check-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Faster way to check tips
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#more-stuff" class="md-nav__link">
+    <span class="md-ellipsis">
+      More stuff
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recap
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#physical-examination" class="md-nav__link">
+    <span class="md-ellipsis">
+      Physical Examination
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#even-faster-way-to-inspect-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Even faster way to inspect tips
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="filament-cutters.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Filament Cutters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="misc.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Miscellaneous
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#use-the-happyhare-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use the HappyHare documentation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finally-found-some-more-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      Finally found some more info!
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-about-happyhare-tip-tuning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning about HappyHare tip tuning
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faster-way-to-check-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Faster way to check tips
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#more-stuff" class="md-nav__link">
+    <span class="md-ellipsis">
+      More stuff
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recap
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#physical-examination" class="md-nav__link">
+    <span class="md-ellipsis">
+      Physical Examination
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#even-faster-way-to-inspect-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Even faster way to inspect tips
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Standlone Tip Tuning</h1>
+
+<p>I have spent a lot of time trying to understand and learn how to tune filament tips.
+My notes are pretty darn rough and scattered and many are even outdated. 
+Some of those notes will be found here and published early before being polished.</p>
+<p><strong>So please excuse the messiness and be warned that some of these things are wrong</strong></p>
+<p>Stuff at the bottom is more likely to be up to date and likely more valid</p>
+<h2 id="use-the-happyhare-documentation">Use the HappyHare documentation</h2>
+<p><a href="https://github.com/moggieuk/Happy-Hare/blob/main/doc/gcode_customization.md#---_mmu_form_tip_standalone">This page</a> of the Happy Hare documentation is loaded with useful info.</p>
+<p>I need to learn more about how to make this work as I had trouble getting the standlone tip tuning to work for me. I clearly need to read that document and simply start adjusting parameters as best as I can and then test and repeat that process until I get closer to forming the type of tip that I think will work for me.</p>
+<blockquote>
+<p>Note: I found an alternate tip forming macro that worked well enough until I found other ideas/approaches. This is worth
+checking out or at least recording here for posterity. The macro can be found <a href="https://github.com/gennro/ERCFMods/blob/main/Macros/MMU_FORM_TIP.cfg">here</a></p>
+</blockquote>
+<h2 id="finally-found-some-more-info">Finally found some more info!</h2>
+<p><a href="https://discord.com/channels/460117602945990666/909743915475816458/1167157082018029700">See this post by 'moggieuk' on the Voron Discord server</a>
+This in turn lead to a spreadsheet document with values for various hotends, the document has these tabs:</p>
+<ul>
+<li><a href="https://docs.google.com/spreadsheets/d/1FcpQ37Cf5g9mw04MGYQnhk4WGluIm2uXc-2plKwKrf0/edit#gid=739371073">Measuring Hot End Parameters</a></li>
+<li><a href="https://docs.google.com/spreadsheets/d/1FcpQ37Cf5g9mw04MGYQnhk4WGluIm2uXc-2plKwKrf0/edit#gid=0">Tip Tuning Parameters</a></li>
+</ul>
+<h2 id="learning-about-happyhare-tip-tuning">Learning about HappyHare tip tuning</h2>
+<p>As mentioned <a href="https://github.com/moggieuk/Happy-Hare/blob/main/doc/gcode_customization.md#---_mmu_form_tip_standalone">the documentation</a> has some important info. In this section I will try to document what I am learning, hope to achieve and steps taken along the way.</p>
+<p>Switch to using HappyHare tip tuning macro instead of the <code>_MMU_FORM_TIP_GENNRO</code> macro I've been currentlly using.</p>
+<pre><code>MMU_TEST_CONFIG form_tip_macro=_MMU_FORM_TIP_STANDALONE
+</code></pre>
+<p>Open up <code>mmu_software.cfg</code> and you'll notice this section of the <code>_MMU_FORM_TIP_STANDALONE</code> macro that defines all of the parameters/variables:</p>
+<pre><code class="language-yaml">########################################################################
+# Standalone Tip Forming (also helps with rapid tuning of Slicer values)
+########################################################################
+[gcode_macro _MMU_FORM_TIP_STANDALONE]
+description: Standalone macro that mimics SuperSlicer process
+
+# Unloading and Ramming values - Initial moves to form and shape tip
+variable_unloading_speed_start: 80     # Fast here to seperate the filament from meltzone (Very intitial retract SS uses distance of E-15)
+variable_unloading_speed: 20           # Too fast forms excessively long tip or hair. Slow is better here UNLOADING_SPEED_START/COOLING_MOVES seems a good start
+variable_ramming_volume: 0             # (mm^3) SS default values = 2, 5, 9, 13, 18, 23, 27. Only Used to Simulate SS Ramming during standalone
+variable_ss_ramming: 0                 # Set to 0 for standalone ramming (RAMMING_VOLUME), 1 to let the slicer do it (i.e. turn off for standalone)
+
+# Cooling Move Values - To cool the tip formed and separate from strings
+variable_cooling_tube_position: 35     # Dragon ST: 35, Dragon HF: 30, Mosquito: 30, Revo: 35, Phaetus Rapido HF: 43;  Measured from Top of Heater Block to Top of Heatsink
+variable_cooling_tube_length: 10       # Dragon ST: 15, Dragon HF: 10, Mosquito: 20, Revo: 10, Phaetus Rapido HF: 22; Measured from Nozzle to Top of Heater Block
+variable_initial_cooling_speed: 10     # Slow to solidify tip and cool string if formed.
+variable_final_cooling_speed: 50       # High speed break the string formed. Too fast = tip deformation during eject. Too Slow = long string/no seperation
+variable_toolchange_temp: 0            # Used if you want to lower temp during toolchanges default 0
+variable_cooling_moves: 4              # 2-4 is a good start
+
+# SkinnyDip values - To burn off VERY FINE hairs only (This is NOT for long tip reshaping)
+variable_use_skinnydip: 1              # Tune this LAST, this is for removal of VERY FINE hairs only (Different than a long tip)
+variable_skinnydip_distance: 30        # Start just under Cooling_tube_position and increase - Will depend on how much Ramming Volume is used
+variable_dip_insertion_speed: 30       # Medium-Slow - Just long enough to melt the fine hairs. Too slow will pull up molten filament
+variable_dip_extraction_speed: 70      # Around 2x Insertion speed, Prevents forming new hairs
+variable_melt_zone_pause: 0            # Milliseconds - default 0
+variable_cooling_zone_pause: 0         # Milliseconds - default 0 - If you need to adjust here its possible Dip Insertion too slow
+variable_use_fast_skinnydip: 0         # Skip the toolhead temp change during skinnydip move - default 0
+
+# Final Eject - for standalone tuning only. Automatically set by `MMU_FORM_TIP` command
+variable_final_eject: 0                # Default 0, enable during standalone tuning process to eject the filament
+
+# Park filament ready to eject
+variable_parking_distance: 0           # Final filament parking position after final cooling move, 0 will leave filament where it naturally ends up
+
+</code></pre>
+<p>The following two variables seem pretty important:</p>
+<pre><code class="language-yaml">variable_cooling_tube_position: 35     # Dragon ST: 35, Dragon HF: 30, Mosquito: 30, Revo: 35, Phaetus Rapido HF: 43;  Measured from Top of Heater Block to Top of Heatsink
+variable_cooling_tube_length: 10       # Dragon ST: 15, Dragon HF: 10, Mosquito: 20, Revo: 10, Phaetus Rapido HF: 22; Measured from Nozzle to Top of Heater Block
+</code></pre>
+<p>The printer I'm using to test out my ERCF build is using a CHC V6 with a CHT nozzle. So not a volcano but regular form factor V6. So I can easily use some dimensions of a V6 found online rather than diassembling my toolhead to measure these values. After doing this I found that my CHC V6 is likely very similar to the Revo and the default values that were created by HappyHare are probably fine to use.</p>
+<p>So from a fresh power up I do this sequence</p>
+<pre><code>; Reset everything
+MMU_RESET CONFIRM=1
+MMU_HOME
+MMU_LOAD
+; make sure filament is inside hotend all the way and past the nozzle
+; Use Mainsail interface to extrude about 50mm
+</code></pre>
+<p>Here I had an issue, it wouldn't extrude. I finally tracked it to the gear stepper on the ERCF was skipping (stalling out) or simply not turning. I had enabled it to "sync" with extruder but it wasn't strong enough (reduced current) and so it was actually hampering the extrusion rather than helping with it.</p>
+<p>So disable that sync behavior</p>
+<pre><code>MMU_TEST_CONFIG sync_to_extruder=1
+MMU_TEST_CONFIG sync_gear_current=70
+</code></pre>
+<p>Retry the extrusion using Mainsail, everything works</p>
+<pre><code>; Now eject the filament, this should trigger standalone tip forming
+MMU_UNLOAD
+</code></pre>
+<p>Unfortunately the </p>
+<h2 id="faster-way-to-check-tips">Faster way to check tips</h2>
+<p>Initialize things just once</p>
+<pre><code>MMU_HOME
+MMU_CHECK_GATE
+</code></pre>
+<p>Feed filament, form tip, eject enough so you can pull out bowden tube and examine tip.
+Assumes tool 0 is the gate/tool that has the filament you're testing with</p>
+<pre><code># Feed filament to extruder and to hotend meltzone
+T0
+# Extrude a little so we know its completely in meltzone and a little past it (out of nozzle)
+M83
+G1 E10 F300
+# Form tip and eject tip out of extruder so you can pull bowden tube+filament and inspect
+MMU_EJECT EXTRUDER_ONLY=1
+</code></pre>
+<p>If tip is bad, then cut off.
+Whether you cut or not, make sure enough filament is pulled out of tube so that when
+you re-insert the tube you know the filament will be pushed against the extruder gears</p>
+<h2 id="more-stuff">More stuff</h2>
+<p>See here: https://discord.com/channels/460117602945990666/909743915475816458/1151726419420905542</p>
+<p>The idea is that to iterate on tuning the parameters you directly call the <code>MMU_FORM_TIP</code> macro and provide it parameters
+The parameter values persist until the next restart of Klipperer (or if you do an <code>MMU_RESET</code>).</p>
+<pre><code>MMU_FORM_TIP cooling_moves=3
+</code></pre>
+<pre><code>; Make logging to console verbose so we won't have to look at logfile
+MMU_TEST_CONFIG log_level=4
+; Use STANDALONE method instead of GENNRO
+; form_tip_macro = _MMU_FORM_TIP_GENNRO
+MMU_TEST_CONFIG form_tip_macro=_MMU_FORM_TIP_STANDALONE
+
+;
+MMU_EJECT FINAL_EJECT=1
+
+</code></pre>
+<pre><code>; Show current tip tuning parameters without running the macro
+MMU_FORM_TIP SHOW=1
+</code></pre>
+<pre><code>; Set one or more tip tuning parameters without running the macro
+MMU_FORM_TIP RUN=0 variable_parking_distance=50
+MMU_FORM_TIP RUN=0 variable_final_cooling_speed=70
+MMU_FORM_TIP RUN=0 variable_cooling_tube_position=35
+MMU_FORM_TIP RUN=0 cooling_moves=3
+
+</code></pre>
+<p>Getting these errors occassionally</p>
+<pre><code>TMC 'stepper_mmu_gear' reports error: GSTAT:      00000004 uv_cp=1(Undervoltage!)
+</code></pre>
+<h2 id="recap">Recap</h2>
+<p>In <code>mmu_parameters.cfg</code>. To prevent oozing when filament is loaded into extruder, adjust <code>toolhead_extruder_to_nozzle</code>.
+To deal with error that filament could not be ejected after tip tuning you can try to increase <code>toolhead_unload_safety_margin</code> from default 10 to something higher (say 20).</p>
+<pre><code class="language-yaml">toolhead_extruder_to_nozzle: 50     # 54 was giving blobs when using STANDALONE tip forming method
+toolhead_unload_safety_margin: 20   # 10: Distance added to the extruder unload movement to ensure filament is free of extruder. Must be less than 'gate_unload_buffer`
+</code></pre>
+<pre><code class="language-yaml">sync_form_tip: 1                    # Synchronize during standalone tip formation (initial part of unload)
+force_form_tip_standalone: 1        # 0 = Default smart behavior, 1 = Always do standalone tip forming (TURN SLICER OFF!)
+extruder_form_tip_current: 120      # % of extruder current (100%-150%) to use when forming tip (100 to disable)
+</code></pre>
+<p>Crucial parameters in <code>mmu_software.cfg</code> that are part of <code>_MMU_FORM_TIP_STANDALONE</code> macro</p>
+<pre><code class="language-yaml">variable_cooling_tube_position: 40     # Spreadsheet calls this: &quot;Cooling Tube Retraction&quot;.
+variable_cooling_tube_length: 20       #
+</code></pre>
+<p><code>variable_cooling_tube_position</code> is how far back to retract the filament so that it is at the start point of the cooling region.
+I think</p>
+<p><code>variable_cooling_tube_length</code> is the length of the cooling region. The end point of the cooling region is at
+<code>variable_cooling_tube_position</code> + <code>variable_cooling_tube_length</code>.</p>
+<p>The actual tip tuning goes roughly like this:</p>
+<pre><code class="language-python">    if ramming:
+        do some ramming
+    retract_ammount = 'cooling_tube_position' - ('cooling_tube_length'/2) 
+    retract filament by retract_ammount millimeters
+    # filament should now be in middle of &quot;cooling tube&quot; or &quot;cooling region&quot;.
+    # This is the 34mm we measured earlier
+</code></pre>
+<h2 id="physical-examination">Physical Examination</h2>
+<p>I separated the Sherpa Mini from the V6 hotend and its fan. I left the filament and bowden tube connected to the Sherpa Mini.
+I performed a <code>MMU_EJECT EXTRUDER_ONLY=1</code> to have the extruder pull the filament into its "park" location (right before the extruder gears).
+Then I performed <code>MMU_LOAD EXTRUDER_ONLY=1</code> so I could measure how far away from the base of the extruder the filament was pushed.
+This distance is 34mm (or sometimes 38mm) which seems about right as the base of the Sherpa Mini is about 16mm (more or less) away from the entry point of the BMG gears
+which combined yields 50mm and we've set <code>toolhead_extruder_to_nozzle</code> to the value of 50.</p>
+<p>With the filament extended into what is supposed to be the hotend meltzone (50mm), I then performed <code>MMU_EJECT EXTRUDER_ONLY=1</code>
+and observed that the filament would retract to about 27mm</p>
+<h2 id="even-faster-way-to-inspect-tips">Even faster way to inspect tips</h2>
+<p>I created some macros that allow me to load filament, extrude a bit so for sure we know nozzle is primed, then perform tip tuning and eject
+the filament only enough so that Bowden can be pulled out and tip examined. Then parameters can be modifed like this example:</p>
+<pre><code>MMU_FORM_TIP cooling_moves=3
+</code></pre>
+<p>Then a second macro to repeat the process.</p>
+<p>Create a <code>test_macros.cfg</code> and place it into the <code>mmu/optional</code> folder. Be sure to add an include line in your <code>printer.cfg</code>
+(something like this):</p>
+<pre><code>[include mmu/optional/test_macros.cfg]
+</code></pre>
+<p>Place the following into this new <code>test_macros.cfg</code></p>
+<pre><code class="language-yaml">[gcode_macro FORM_TIP_AND_EJECT]
+description: Forms a tip and then ejects it out of extruder for inspection
+gcode:
+    # Feed filament to extruder and to hotend meltzone
+    T0
+    # Extrude a little so we know its completely in meltzone and a little past it (out of nozzle)
+    M83
+    G1 E25 F300
+    # Form tip and eject tip out of extruder so you can pull bowden tube+filament and inspect
+    MMU_EJECT EXTRUDER_ONLY=1
+
+[gcode_macro REFORM_TIP_AND_EJECT]
+description: Forms a tip and then ejects it out of extruder for inspection
+gcode:
+    # Feed filament to extruder and to hotend meltzone
+    MMU_LOAD EXTRUDER_ONLY=1
+    # Extrude a little so we know its completely in meltzone and a little past it (out of nozzle)
+    M83
+    G1 E25 F300
+    # Form tip and eject tip out of extruder so you can pull bowden tube+filament and inspect
+    MMU_EJECT EXTRUDER_ONLY=1
+</code></pre>
+<p>Use <code>FORM_TIP_AND_EJECT</code> to start (may need to do an <code>MMU_HOME</code> first if HappyHare tells you).
+You only use this macro this one time to start things off.</p>
+<p>Then pull out bowden tube and end of filament, inspect, tweak vars, make sure filament is 
+sufficiently pulled out of tube and then re-insert filament and tube back onto extruder.
+Then use <code>REFORM_TIP_AND_EJECT</code> to repeat the process as many times as you wish.</p>
+<blockquote>
+<p>ProTip: Use tab autocomplete in the console to avoid having to type out the full names of these macros</p>
+</blockquote>
+<p>Make sure you get familiar with the <code>MMU_FORM_TIP</code> macro so you can tweak the parameters
+easily during these test/inspect passes without having to restart Klipper (and HappyHare)</p>
+<p>Here are some examples</p>
+<pre><code>; Show current tip tuning parameters without running the macro
+MMU_FORM_TIP SHOW=1
+</code></pre>
+<pre><code>; Set one or more tip tuning parameters without running the macro
+MMU_FORM_TIP RUN=0 variable_parking_distance=50
+MMU_FORM_TIP RUN=0 variable_final_cooling_speed=70
+MMU_FORM_TIP RUN=0 variable_cooling_tube_position=35
+MMU_FORM_TIP RUN=0 cooling_moves=3
+
+</code></pre>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.6c14ae12.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+    
+  </body>
+</html>
